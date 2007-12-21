@@ -7,6 +7,7 @@ URL: 		http://www.thdl.org/xml/show.php?xml=/tools/tibfonts.xml&l=uva10928423419
 Group:		System/Fonts/True type
 Source0:	%{name}.tar.bz2
 Buildarch:	noarch
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	freetype-tools
 Requires(post):	fontconfig
 
