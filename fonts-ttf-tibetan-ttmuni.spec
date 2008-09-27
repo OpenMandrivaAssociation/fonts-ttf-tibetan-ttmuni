@@ -1,11 +1,11 @@
 Summary:	Tibetan Machine Unicode font
 Name:		fonts-ttf-tibetan-ttmuni
-Version:	1.1.1.1
-Release:	%mkrel 0.alpha.2
-License:	GPL
-URL: 		http://www.thdl.org/xml/show.php?xml=/tools/tibfonts.xml&l=uva10928423419921
+Version:	1.901b
+Release:	%mkrel 1
+License:	GPLv2+
+URL: 		http://www.thdl.org/tools/fonts/tibfonts.php
 Group:		System/Fonts/True type
-Source0:	%{name}.tar.bz2
+Source0:	TibetanMachineUnicodeFont.zip
 Buildarch:	noarch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	freetype-tools
@@ -26,9 +26,6 @@ install -m 644 *.ttf ${RPM_BUILD_ROOT}%{_datadir}/fonts/ttf/ttmuni/
 cd ${RPM_BUILD_ROOT}/%{_datadir}/fonts/ttf/ttmuni/
 /usr/sbin/ttmkfdir > fonts.scale
 cp fonts.scale fonts.dir
-(cd ${RPM_BUILD_ROOT}/%{_datadir}/fonts/ttf/ttmuni
- fc-cache . || touch fonts.cache-1
-)
 
 mkdir -p %{buildroot}%_sysconfdir/X11/fontpath.d/
 ln -s ../../..%_datadir/fonts/ttf/ttmuni \
@@ -36,12 +33,11 @@ ln -s ../../..%_datadir/fonts/ttf/ttmuni \
 
 
 %post
-%{_bindir}/fc-cache %{_datadir}/fonts/ 
+[ -x %{_bindir}/fc-cache ] && %{_bindir}/fc-cache 
 
 %postun
-# 0 means a real uninstall
 if [ "$1" = "0" ]; then
-   %{_bindir}/fc-cache %{_datadir}/fonts/ 
+  [ -x %{_bindir}/fc-cache ] && %{_bindir}/fc-cache 
 fi
 
 %clean
@@ -49,6 +45,6 @@ rm -fr ${RPM_BUILD_ROOT}
 
 %files
 %defattr(0644,root,root,0755)
-%doc gpl.txt
+%doc *.txt
 %{_datadir}/fonts/ttf/ttmuni/
 %{_sysconfdir}/X11/fontpath.d/ttf-tibetan-ttmuni:pri=50
