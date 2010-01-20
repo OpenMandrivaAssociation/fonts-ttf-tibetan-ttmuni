@@ -1,7 +1,7 @@
 Summary:	Tibetan Machine Unicode font
 Name:		fonts-ttf-tibetan-ttmuni
 Version:	1.901b
-Release:	%mkrel 2
+Release:	%mkrel 3
 License:	GPLv2+
 URL: 		http://www.thdl.org/tools/fonts/tibfonts.php
 Group:		System/Fonts/True type
@@ -9,7 +9,6 @@ Source0:	TibetanMachineUnicodeFont.zip
 Buildarch:	noarch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	freetype-tools
-Requires(post):	fontconfig
 
 %description
 This package provides an OpenType Unicode Tibetan font,
@@ -31,14 +30,6 @@ mkdir -p %{buildroot}%_sysconfdir/X11/fontpath.d/
 ln -s ../../..%_datadir/fonts/ttf/ttmuni \
     %{buildroot}%_sysconfdir/X11/fontpath.d/ttf-tibetan-ttmuni:pri=50
 
-
-%post
-[ -x %{_bindir}/fc-cache ] && %{_bindir}/fc-cache 
-
-%postun
-if [ "$1" = "0" ]; then
-  [ -x %{_bindir}/fc-cache ] && %{_bindir}/fc-cache 
-fi
 
 %clean
 rm -fr ${RPM_BUILD_ROOT}
