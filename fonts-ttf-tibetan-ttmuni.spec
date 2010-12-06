@@ -8,7 +8,7 @@ Group:		System/Fonts/True type
 Source0:	TibetanMachineUnicodeFont.zip
 Buildarch:	noarch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
-BuildRequires:	freetype-tools
+BuildRequires:	mkfontdir
 
 %description
 This package provides an OpenType Unicode Tibetan font,
@@ -16,15 +16,14 @@ for writing in Tibetan, Dzongkha and Ladakhi with almost 4000 glyphs.
 
 %prep
 %setup -q -c %{name}
-%build
 
 %install
 rm -rf ${RPM_BUILD_ROOT}
 mkdir -p ${RPM_BUILD_ROOT}/%{_datadir}/fonts/ttf/ttmuni/
 install -m 644 *.ttf ${RPM_BUILD_ROOT}%{_datadir}/fonts/ttf/ttmuni/
 cd ${RPM_BUILD_ROOT}/%{_datadir}/fonts/ttf/ttmuni/
-/usr/sbin/ttmkfdir > fonts.scale
-cp fonts.scale fonts.dir
+mkfontdir
+cp fonts.dir fonts.scale
 
 mkdir -p %{buildroot}%_sysconfdir/X11/fontpath.d/
 ln -s ../../..%_datadir/fonts/ttf/ttmuni \
