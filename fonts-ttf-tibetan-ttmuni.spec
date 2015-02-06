@@ -1,7 +1,7 @@
 Summary:	Tibetan Machine Unicode font
 Name:		fonts-ttf-tibetan-ttmuni
 Version:	1.901b
-Release:	%mkrel 5
+Release:	6
 License:	GPLv2+
 URL: 		http://www.thdl.org/tools/fonts/tibfonts.php
 Group:		System/Fonts/True type
