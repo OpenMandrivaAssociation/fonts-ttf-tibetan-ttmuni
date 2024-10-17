@@ -3,7 +3,7 @@ Name:		fonts-ttf-tibetan-ttmuni
 Version:	1.901b
 Release:	6
 License:	GPLv2+
-URL: 		http://www.thdl.org/tools/fonts/tibfonts.php
+URL: 		https://www.thdl.org/tools/fonts/tibfonts.php
 Group:		System/Fonts/True type
 Source0:	TibetanMachineUnicodeFont.zip
 Buildarch:	noarch
